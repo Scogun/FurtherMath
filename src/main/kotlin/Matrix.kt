@@ -79,7 +79,7 @@ class Matrix {
             return false
         }
 
-        rows().forEachIndexed { i, row -> row.forEachIndexed { j, element -> if (Math.abs(this[i, j] - otherMatrix[i, j]) > 1*Math.pow(10.0, -15.0)) { return false } } }
+        rows().forEachIndexed { i, row -> row.forEachIndexed { j, _ -> if (Math.abs(this[i, j] - otherMatrix[i, j]) > 1*Math.pow(10.0, -15.0)) { return false } } }
         return true
     }
 
