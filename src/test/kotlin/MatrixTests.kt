@@ -77,6 +77,8 @@ class MatrixTests {
         Assertions.assertEquals("2 -1\r\n-1 1", matrix.adjugate().toString())
         matrix = Matrix(arrayListOf(doubleArrayOf(1.0, 0.0, 2.0), doubleArrayOf(2.0, -1.0, 1.0), doubleArrayOf(1.0, 3.0, -1.0)))
         Assertions.assertEquals("-2 3 7\r\n6 -3 -3\r\n2 3 -1", matrix.adjugate().toString())
+        matrix = Matrix(arrayListOf(doubleArrayOf(1.0, 0.0, 2.0), doubleArrayOf(2.0, -1.0, 1.0)))
+        Assertions.assertThrows(Exception::class.java) { matrix.adjugate() }
     }
 
     @Test
@@ -85,6 +87,8 @@ class MatrixTests {
         Assertions.assertEquals("2 -1\r\n-1 1", matrix.inverted().toString())
         matrix = Matrix(arrayListOf(doubleArrayOf(1.0, 0.0, 2.0), doubleArrayOf(2.0, -1.0, 1.0), doubleArrayOf(1.0, 3.0, -1.0)))
         Assertions.assertEquals(Matrix.makeIdentity(3), matrix * matrix.inverted())
+        Assertions.assertThrows(Exception::class.java) { Matrix(2, 3).inverted() }
+        Assertions.assertThrows(Exception::class.java) { Matrix(arrayListOf(doubleArrayOf(1.0, 1.0), doubleArrayOf(1.0, 1.0))).inverted() }
     }
 
     @Test
@@ -93,6 +97,8 @@ class MatrixTests {
         var second = Matrix(arrayListOf(doubleArrayOf(5.0, 6.0), doubleArrayOf(7.0, 8.0)))
         Assertions.assertEquals(first, second)
         second =  Matrix(arrayListOf(doubleArrayOf(10.0, 6.0), doubleArrayOf(7.0, 8.0)))
+        Assertions.assertNotEquals(first, second)
+        second =  Matrix(arrayListOf(doubleArrayOf(5.0, 6.0, 7.0), doubleArrayOf(7.0, 8.0, 9.0)))
         Assertions.assertNotEquals(first, second)
     }
 
