@@ -1,5 +1,8 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeSameInstanceAs
+import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import kotlin.test.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -10,7 +13,7 @@ class ComplexTests{
         val first = Complex(1.0, 1.0)
         val second = Complex(2.0, 2.0)
         val third = first + second
-        Assertions.assertEquals("3+3i", third.toString())
+        third.toString().shouldBe("3+3i")
     }
 
     @Test
@@ -19,7 +22,7 @@ class ComplexTests{
         val first = Complex(3.0, 4.0)
         val second = Complex(2.0, 2.0)
         val third = first - second
-        Assertions.assertEquals("1+2i", third.toString())
+        third.toString().shouldBe("1+2i")
     }
 
     @ParameterizedTest
@@ -28,7 +31,7 @@ class ComplexTests{
         val first = Complex(firstReal, firstImaginary)
         val second = Complex(secondReal, secondImaginary)
         val third = first * second
-        Assertions.assertEquals(result, third.toString())
+        third.toString().shouldBe(result)
     }
 
     @ParameterizedTest
@@ -37,37 +40,37 @@ class ComplexTests{
         val first = Complex(firstReal, firstImaginary)
         val second = Complex(secondReal, secondImaginary)
         val third = first / second
-        Assertions.assertEquals(result, third.toString())
+        third.toString().shouldBe(result)
     }
 
     @Test
     fun conjugate() {
         val complex = Complex(5.0, 6.0)
-        Assertions.assertEquals("5-6i", Complex.conjugate(complex).toString())
-        Assertions.assertEquals("5-6i", complex.conjugate().toString())
+        Complex.conjugate(complex).toString().shouldBe("5-6i")
+        complex.conjugate().toString().shouldBe("5-6i")
     }
 
     @Test
     fun abs() {
         val complex = Complex(3.0, 4.0)
-        Assertions.assertEquals(5.0, complex.abs(), Double.MIN_VALUE)
+        complex.abs().shouldBe(5.0)
     }
 
     @Test
     fun arg() {
         val complex = Complex(1.0, 1.0)
-        Assertions.assertEquals(Math.PI / 4, complex.arg(), Double.MIN_VALUE)
+        complex.arg().shouldBe(Math.PI / 4)
     }
 
     @Test
     fun equals(){
         val first = Complex(1.0, 4.0)
         val second = Complex(1.0, 4.0)
-        Assertions.assertTrue(first === first)
-        Assertions.assertTrue(first == first)
-        Assertions.assertTrue(first == second)
-        Assertions.assertFalse(first === second)
-        Assertions.assertFalse(first != second)
+        first.shouldBeSameInstanceAs(first)
+        first.shouldBe(first)
+        first.shouldBe(second)
+        first.shouldNotBeSameInstanceAs(second)
+        (first != second).shouldBeFalse()
     }
 
     @Test
@@ -75,8 +78,8 @@ class ComplexTests{
         val a = Complex(1.0, 4.0)
         val b = Complex(2.0, 5.0)
         val c = a + b
-        Assertions.assertEquals(a + b, b + a)
-        Assertions.assertEquals(a*b, b*a)
-        Assertions.assertEquals(a*(b + c), a*b + a*c)
+        (a + b).shouldBe(b + a)
+        (a*b).shouldBe(b*a)
+        (a*(b + c)).shouldBe(a*b + a*c)
     }
 }
