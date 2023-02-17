@@ -1,4 +1,5 @@
-import java.util.*
+import kotlin.math.abs
+import kotlin.math.pow
 
 class Matrix {
 
@@ -37,7 +38,7 @@ class Matrix {
 
     operator fun times(other: Double) = Matrix(structure.map { row -> row.map {item -> item * other}.toDoubleArray() })
     operator fun times(other: Int) = Matrix(structure.map { row -> row.map {item -> item * other}.toDoubleArray() })
-    operator fun minus(other: Matrix) = this + (other * -1)
+    operator fun minus(other: Matrix) = try { this + (other * -1) } catch (e: Exception) { throw Exception("For minus operation both matrix must have the same dimensions!") }
 
     operator fun times(other: Matrix) : Matrix {
         if (colCount != other.rowCount) {
@@ -79,12 +80,12 @@ class Matrix {
             return false
         }
 
-        rows().forEachIndexed { i, row -> row.forEachIndexed { j, _ -> if (Math.abs(this[i, j] - otherMatrix[i, j]) > 1*Math.pow(10.0, -15.0)) { return false } } }
+        rows().forEachIndexed { i, row -> row.forEachIndexed { j, _ -> if (abs(this[i, j] - otherMatrix[i, j]) > 1*10.0.pow(-15.0)) { return false } } }
         return true
     }
 
     override fun hashCode(): Int {
-        return Arrays.deepHashCode(structure)
+        return structure.contentDeepHashCode()
     }
 
     companion object {
@@ -138,7 +139,7 @@ class Matrix {
 
             var result = 0.0
             for (i in 0 until matrix.colCount) {
-                result += Math.pow(-1.0, i.toDouble())*matrix[0, i]*matrix.minor(0, i).determinant()
+                result += (-1.0).pow(i.toDouble()) *matrix[0, i]*matrix.minor(0, i).determinant()
             }
             return result
         }
@@ -157,7 +158,7 @@ class Matrix {
             } else {
                 for (i in 0 until matrix.rowCount) {
                     for (j in 0 until matrix.colCount) {
-                        result[i, j] = Math.pow(-1.0, (i + j).toDouble())*matrix.minor(i, j).determinant()
+                        result[i, j] = (-1.0).pow((i + j).toDouble()) *matrix.minor(i, j).determinant()
                     }
                 }
             }
