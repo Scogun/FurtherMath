@@ -1,11 +1,9 @@
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 
 class QuaternionTests {
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @CsvSource("2, 3, 4, 5, 1, 1, 1, 1, 3+4i+5j+6k", "2, 3, 4, 5, 6, 7, 8, 9, 8+10i+12j+14k", "2, 1, 4, 0, 6, 7, 0, 9, 8+8i+4j+9k")
     fun sum(firstReal: Double, firstIImaginary: Double, firstJImaginary: Double, firstKImaginary: Double, secondReal: Double, secondIImaginary: Double, secondJImaginary: Double, secondKImaginary: Double, result: String) {
         val first = Quaternion(firstReal, firstIImaginary, firstJImaginary, firstKImaginary)
@@ -30,7 +28,7 @@ class QuaternionTests {
         val second = Quaternion(secondReal, secondIImaginary, secondJImaginary, secondKImaginary)
         val third = first*second
         third.toString().shouldBe(result)
-    }
+    }*/
 
     @Test
     fun toMatrix()

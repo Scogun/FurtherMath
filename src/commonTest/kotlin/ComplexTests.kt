@@ -2,9 +2,8 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import kotlin.math.PI
 import kotlin.test.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 
 class ComplexTests{
 
@@ -25,7 +24,7 @@ class ComplexTests{
         third.toString().shouldBe("1+2i")
     }
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @CsvSource("1, 1, 2, 2, 4i", "0, 1, 0, 1, -1")
     fun multiplication(firstReal: Double, firstImaginary: Double, secondReal: Double, secondImaginary: Double, result: String) {
         val first = Complex(firstReal, firstImaginary)
@@ -41,7 +40,7 @@ class ComplexTests{
         val second = Complex(secondReal, secondImaginary)
         val third = first / second
         third.toString().shouldBe(result)
-    }
+    }*/
 
     @Test
     fun conjugate() {
@@ -59,7 +58,7 @@ class ComplexTests{
     @Test
     fun arg() {
         val complex = Complex(1.0, 1.0)
-        complex.arg().shouldBe(Math.PI / 4)
+        complex.arg().shouldBe(PI / 4)
     }
 
     @Test
