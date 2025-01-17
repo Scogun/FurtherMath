@@ -1,4 +1,3 @@
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -107,7 +106,7 @@ class MatrixTests {
     }
 
     @Test
-    fun properies() {
+    fun properties() {
         val a = Matrix(arrayListOf(doubleArrayOf(1.0, 4.0), doubleArrayOf(2.0, 3.0)))
         val b = Matrix(arrayListOf(doubleArrayOf(4.0, 4.0), doubleArrayOf(5.0, 2.0)))
         val c = a + b

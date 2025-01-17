@@ -38,7 +38,7 @@ class Matrix {
 
     operator fun times(other: Double) = Matrix(structure.map { row -> row.map {item -> item * other}.toDoubleArray() })
     operator fun times(other: Int) = Matrix(structure.map { row -> row.map {item -> item * other}.toDoubleArray() })
-    operator fun minus(other: Matrix) = try { this + (other * -1) } catch (e: Exception) { throw Exception("For minus operation both matrix must have the same dimensions!") }
+    operator fun minus(other: Matrix) = try { this + (other * -1) } catch (_: Exception) { throw Exception("For minus operation both matrix must have the same dimensions!") }
 
     operator fun times(other: Matrix) : Matrix {
         if (colCount != other.rowCount) {
@@ -170,7 +170,7 @@ class Matrix {
             val determinant: Double
             try {
                 determinant = matrix.determinant()
-            } catch (exception: Exception) {
+            } catch (_: Exception) {
                 throw Exception("Only for square matrix possible to find inverse matrix!")
             }
             if (determinant == 0.0) {

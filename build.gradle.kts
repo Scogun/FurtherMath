@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "2.1.0"
 }
 
 group = "FurtherMath"
@@ -11,15 +13,15 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    testImplementation("io.kotest:kotest-assertions-core:5.5.5")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.4")
 }
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
     }
 }

@@ -1,3 +1,6 @@
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 class Quaternion(private val real: Double, private val iImaginary: Double, private val jImaginary: Double, private val kImaginary: Double) {
 
     operator fun plus(other: Quaternion): Quaternion {
@@ -79,9 +82,11 @@ class Quaternion(private val real: Double, private val iImaginary: Double, priva
                 )
         )
 
-        fun norm(quaternion: Quaternion) = Math.pow(quaternion.real, 2.0) + Math.pow(quaternion.iImaginary, 2.0) + Math.pow(quaternion.jImaginary, 2.0) + Math.pow(quaternion.kImaginary, 2.0)
+        fun norm(quaternion: Quaternion) = quaternion.real.pow(2.0) + quaternion.iImaginary.pow(2.0) + quaternion.jImaginary.pow(
+            2.0
+        ) + quaternion.kImaginary.pow(2.0)
 
-        fun abs(quaternion: Quaternion) = Math.sqrt(norm(quaternion))
+        fun abs(quaternion: Quaternion) = sqrt(norm(quaternion))
 
         fun conjugate(quaternion: Quaternion) = Quaternion(quaternion.real, -quaternion.iImaginary, -quaternion.jImaginary, -quaternion.kImaginary)
     }

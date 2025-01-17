@@ -30,7 +30,6 @@ class QuaternionTests {
         val second = Quaternion(secondReal, secondIImaginary, secondJImaginary, secondKImaginary)
         val third = first*second
         third.toString().shouldBe(result)
-        //Assertions.assertEquals(result, third.toString())
     }
 
     @Test

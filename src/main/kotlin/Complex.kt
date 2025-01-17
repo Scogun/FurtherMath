@@ -1,3 +1,7 @@
+import kotlin.math.atan
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 class Complex(private val real: Double, private val imaginary: Double) {
 
     operator fun plus(other: Complex) = Complex(real + other.real, imaginary + other.imaginary)
@@ -15,7 +19,7 @@ class Complex(private val real: Double, private val imaginary: Double) {
         val realMultiplication = real * other.real
         val imaginaryMultiplication = imaginary * other.imaginary
         val realPartNumerator = realMultiplication + imaginaryMultiplication
-        val realPartDenominator = Math.pow(other.real, 2.0) + Math.pow(other.imaginary, 2.0)
+        val realPartDenominator = other.real.pow(2.0) + other.imaginary.pow(2.0)
         val realPart = realPartNumerator / realPartDenominator
         val firstCross = imaginary * other.real
         val secondCross = real * other.imaginary
@@ -70,7 +74,7 @@ class Complex(private val real: Double, private val imaginary: Double) {
     companion object {
 
         fun conjugate(complex: Complex) = Complex(complex.real, -complex.imaginary)
-        fun abs(complex: Complex) = Math.sqrt(Math.pow(complex.real, 2.0) + Math.pow(complex.imaginary, 2.0))
-        fun arg(complex: Complex) = Math.atan(complex.imaginary / complex.real)
+        fun abs(complex: Complex) = sqrt(complex.real.pow(2.0) + complex.imaginary.pow(2.0))
+        fun arg(complex: Complex) = atan(complex.imaginary / complex.real)
     }
 }
